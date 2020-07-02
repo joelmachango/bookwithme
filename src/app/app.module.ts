@@ -9,9 +9,8 @@ import { RentalComponent } from './rental/rental.component';
 
 import { RentalModule } from './rental/rental.module'
 
-
 const routes: Routes = [
-  { path: '', component: RentalComponent }
+  { path: '', redirectTo: 'rentals', pathMatch: 'full' }
 ]
 
 
@@ -23,7 +22,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    RentalModule
+    RentalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

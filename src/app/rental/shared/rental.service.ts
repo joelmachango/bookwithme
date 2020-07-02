@@ -57,6 +57,17 @@ export class RentalService {
     createdAt: "2/7/2020"
   }]
 
+  public getRentalById(rentalId: string): Observable<Rental> {
+    return new Observable<Rental>((observer) => {
+      setTimeout((rental) => {
+        const foundRental = this.rentals.find((rental) => {
+          return rental.id == rentalId
+        })
+        observer.next(foundRental)
+      }, 500)
+    })
+  }
+
   public getRentals(): Observable<Rental[]> {
     const rentalObservable: Observable<Rental[]> = new Observable((observer) => {
       setTimeout(() => {

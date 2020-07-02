@@ -24,5 +24,5 @@ export class RentalListComponent implements OnInit {
       () => { }
     )
   }
-  git
+
 }
