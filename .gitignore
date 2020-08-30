@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 # Ignore DB_URL
-/server/config/dev.js
+# /server/config/dev.js
