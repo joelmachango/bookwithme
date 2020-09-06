@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 
 import { RentalModule } from './rental/rental.module';
+import { AuthModule } from './auth/auth.module';
+
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'rentals', pathMatch: 'full' }
 ]
-
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     RentalModule,
-
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
