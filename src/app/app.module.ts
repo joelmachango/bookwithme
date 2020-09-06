@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 
 import { RentalModule } from './rental/rental.module';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'rentals', pathMatch: 'full' }
@@ -17,6 +18,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
+    AuthComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
