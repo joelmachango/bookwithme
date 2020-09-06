@@ -1,3 +1,38 @@
-<p>
-  register works!
-</p>
+<section id="register">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Register</h1>
+        <form>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input [(ngModel)]="formData.username" type="text" class="form-control" id="username" name="username">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input [(ngModel)]="formData.email" type="email" class="form-control" id="email" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input [(ngModel)]="formData.password" type="password" class="form-control" id="password" name="password">
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirmation">Confirm Password</label>
+            <input [(ngModel)]="formData.passwordConfirmation" type="password" class="form-control"
+              id="passwordConfirmation" name="passwordConfirmation">
+          </div>
+          <button (click)="register()" type="submit" class="btn btn-bwm">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">As our member you have access to most awesome places in the world.</h2>
+          <img src="assets/images/register-image.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
