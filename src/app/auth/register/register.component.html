@@ -3,28 +3,53 @@
     <div class="row">
       <div class="col-md-5">
         <h1 class="page-title">Register</h1>
-        <form>
+        <form #registerForm="ngForm">
           <div class="form-group">
             <label for="username">Username</label>
-            <input [(ngModel)]="formData.username" type="text" class="form-control" id="username" name="username">
+            <input [(ngModel)]="formData.username" type="text" class="form-control" id="username" name="username"
+              required #username="ngModel">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+              <div *ngIf="username.errors.required">
+                Name is required.
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input [(ngModel)]="formData.email" type="email" class="form-control" id="email" name="email">
+            <input [(ngModel)]="formData.email" type="email" class="form-control" id="email" name="email" required
+              #email="ngModel">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+              <div *ngIf="email.errors.required">
+                Email is required.
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input [(ngModel)]="formData.password" type="password" class="form-control" id="password" name="password">
+            <input [(ngModel)]="formData.password" type="password" class="form-control" id="password" name="password"
+              required #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
             <label for="passwordConfirmation">Confirm Password</label>
             <input [(ngModel)]="formData.passwordConfirmation" type="password" class="form-control"
-              id="passwordConfirmation" name="passwordConfirmation">
+              id="passwordConfirmation" name="passwordConfirmation" required #confirmPassword="ngModel">
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+              class="alert alert-danger">
+              <div *ngIf="confirmPassword.errors.required">
+                Confirm Password is required.
+              </div>
+            </div>
           </div>
-          <button (click)="register()" type="submit" class="btn btn-bwm">Submit</button>
+          <button [disabled]="!registerForm.form.valid" (click)="register()" type="submit"
+            class="btn btn-bwm">Submit</button>
         </form>
       </div>
       <div class="col-md-6 ml-auto">
