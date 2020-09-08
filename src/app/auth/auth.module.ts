@@ -7,6 +7,8 @@ import { AuthComponent } from './auth.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
+import { AuthService } from './shared/auth.service'
+
 const routes: Routes = [
   {
     path: "auth",
@@ -25,6 +27,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule
   ],
-  providers: []
+  providers: [AuthService]
 })
 export class AuthModule { }
