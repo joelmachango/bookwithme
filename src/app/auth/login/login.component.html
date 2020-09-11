@@ -3,6 +3,9 @@
     <div class="row">
       <div class="col-md-5">
         <h1>Login</h1>
+        <div class="alert alert-success" *ngIf="notifyMessage">
+          {{notifyMessage}}
+        </div>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="form-group">
             <label for="email">Email</label>
@@ -31,7 +34,7 @@
       <div class="col-md-6 ml-auto">
         <div class="image-container">
           <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
-          <img src="assets/images/login-image.jpg" alt="">
+          <img src="assets/images/register-image.jpg" alt="">
         </div>
       </div>
     </div>

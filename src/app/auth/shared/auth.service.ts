@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
+import 'rxjs/Rx'
 
 
 @Injectable()
@@ -13,6 +14,13 @@ export class AuthService {
   }
 
   public login(userData: any): Observable<any> {
-    return this.http.post('api/v1/users/auth', userData)
+    return this.http.post('api/v1/users/auth', userData.map(
+      (token: string) => this.saveToken(token)
+    ))
+  }
+
+  private saveToken(token: string) {
+    localStorage.setItem('bwm_auth', token)
+    return token
   }
 }
