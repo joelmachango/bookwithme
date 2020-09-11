@@ -7,7 +7,6 @@
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" formControlName="email">
-
             <div *ngIf="isInvalidForm('email')" class="alert alert-danger">
               <div *ngIf="isRequired('email')">
                 Email is required.
@@ -23,6 +22,11 @@
           </div>
           <button [disabled]="!loginForm.valid" type="submit" class="btn btn-bwm">Submit</button>
         </form>
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <p *ngFor="let error of errors">
+            {{error.details}}
+          </p>
+        </div>
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
