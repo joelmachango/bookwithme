@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Rental } from '../../shared/rental.model'
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -8,7 +7,7 @@ import { Rental } from '../../shared/rental.model'
 })
 export class RentalDetailBookingComponent implements OnInit {
 
-  @Input() rental: Rental;
+  @Input() price: Number;
 
   constructor() { }
 
