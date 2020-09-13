@@ -12,6 +12,7 @@ import { RentalListComponent } from "./rental-list/rental-list.component";
 import { RentalListItemComponent } from "./rental-list-item/rental-list-item.component";
 import { RentalService } from './shared/rental.service';
 import { RentalDetailsComponent } from './rental-details/rental-details.component';
+import { AuthGuard } from '../auth/shared/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
     component: RentalComponent,
     children: [
       { path: "", component: RentalListComponent },
-      { path: ':rentalId', component: RentalDetailsComponent }
+      { path: ':rentalId', component: RentalDetailsComponent, canActivate: [AuthGuard] }
     ]
   }
 ]
@@ -39,7 +40,7 @@ const routes: Routes = [
     NgPipesModule,
     MapModule
   ],
-  providers: [RentalService]
+  providers: [RentalService, AuthGuard]
 })
 
 export class RentalModule { }
