@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      () => {
+      (token) => {
+        this.auth.saveToken(token)
         this.router.navigate(['/rentals'])
       },
       (errorResponse) => {
