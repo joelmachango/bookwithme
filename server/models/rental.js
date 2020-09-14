@@ -37,7 +37,8 @@ const rentalSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  bookings: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
 })
 
 
