@@ -107,6 +107,7 @@ function parseToken(token) {
   return jwt.verify(token.split(' ')[1], config.SECRET);
 }
 
-function notAuthorized(res) {
+function notAuthorized(req, res, next) {
   return res.status(401).send({ errors: [{ title: 'Not Authorized', details: 'You need to login to get access' }] })
+  // console.log('Fix Error: Not Authorized')
 }

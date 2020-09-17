@@ -7,6 +7,7 @@ const Rental = require('./models/rental')
 
 const rentalRoutes = require('./routes/rentals')
 const userRoutes = require('./routes/users')
+const bookingRoutes = require('./routes/bookings')
 
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -20,6 +21,8 @@ app.use(bodyParser.json())
 
 app.use('/api/v1/rentals', rentalRoutes)
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/bookings', bookingRoutes)
+
 
 
 app.get('/rentals', function (req, res) {
