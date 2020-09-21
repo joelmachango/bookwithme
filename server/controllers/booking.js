@@ -47,8 +47,6 @@ exports.createBooking = function (req, res) {
         return res.status(422).send({ errors: [{ title: 'Invalid Booking', details: 'Chossen dates are already taken;' }] })
       }
     })
-
-  // res.json({ 'createBooking': 'ok' })
 }
 
 function isValidBooking(proposedBooking, rental) {
