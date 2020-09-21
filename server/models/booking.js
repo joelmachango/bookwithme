@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Booking Model
 const bookingSchema = new Schema({
   startAt: {
     type: Date,
