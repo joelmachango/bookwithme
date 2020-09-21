@@ -20,7 +20,7 @@ router.get('', function (req, res) {
 router.get('/:id', function (req, res) {
   const rentalId = req.params.id;
   Rental.findById(rentalId)
-    .populate('users', 'username -_id')
+    .populate('user', 'username -_id')
     .populate('bookings', 'startAt endAt -_id')
     .exec(function (err, foundRental) {
       if (err) {
