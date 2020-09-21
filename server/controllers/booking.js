@@ -15,7 +15,6 @@ exports.createBooking = function (req, res) {
     .populate('bookings')
     .populate('user')
     .exec(function (err, foundRental) {
-
       if (err) {
         return res.status(422).send({
           errors: normalizeErrors(error.errors)
@@ -41,7 +40,7 @@ exports.createBooking = function (req, res) {
 
           User.update({ _id: user.id }, { $push: { bookings: booking } }, function () { })
 
-          return res.json({ startArt: booking.startArt, endAt: booking.endAt })
+          return res.json({ startArt: booking.startAt, endAt: booking.endAt })
         })
 
       } else {
@@ -56,7 +55,7 @@ function isValidBooking(proposedBooking, rental) {
   let isValid = true
 
   if (rental.bookings && rental.bookings.length > 0) {
-    rental.bookings.every(function (booking) {
+    isValid = rental.bookings.every(function (booking) {
       const proposedStart = moment(proposedBooking.startAt)
       const proposedEnd = moment(proposedBooking.endAt)
 
