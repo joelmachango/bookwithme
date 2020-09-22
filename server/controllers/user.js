@@ -1,5 +1,5 @@
 const User = require('../models/user')
-const MongooseHelpers = require('../helpers/mongoose')
+const { normalizeErrors } = require('../helpers/mongoose')
 const jwt = require('jsonwebtoken')
 const config = require('../config/dev')
 
@@ -12,7 +12,7 @@ exports.auth = function (req, res) {
 
   User.findOne({ email }, function (err, user) {
     if (err) {
-      return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) })
+      return res.status(422).send({ errors: normalizeErrors(err.errors) })
     }
 
     if (!user) {
@@ -56,7 +56,7 @@ exports.register = function (req, res) {
 
   User.findOne({ email }, function (err, existingUser) {
     if (err) {
-      return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) })
+      return res.status(422).send({ errors: normalizeErrors(err.errors) })
     }
 
     if (existingUser) {
@@ -72,7 +72,7 @@ exports.register = function (req, res) {
     user.save(function (err) {
       if (err) {
         // return res.status(422).send(err)
-        return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) })
+        return res.status(422).send({ errors: normalizeErrors(err.errors) })
       }
 
       return res.json({ 'registered': true })
@@ -89,17 +89,17 @@ exports.authMiddleware = function (req, res, next) {
 
     User.findById(user.userId, function (err, user) {
       if (err) {
-        return res.status(422).send({ errors: MongooseHelpers.normalizeErrors(err.errors) })
+        return res.status(422).send({ errors: normalizeErrors(err.errors) })
       }
       if (user) {
         res.locals.user = user
         next()
       } else {
-        return notAuthorized()
+        return notAuthorized(res)
       }
     })
   } else {
-    return notAuthorized()
+    return notAuthorized(res)
   }
 }
 
@@ -107,7 +107,6 @@ function parseToken(token) {
   return jwt.verify(token.split(' ')[1], config.SECRET);
 }
 
-function notAuthorized(req, res, next) {
+function notAuthorized(res) {
   return res.status(401).send({ errors: [{ title: 'Not Authorized', details: 'You need to login to get access' }] })
-  // console.log('Fix Error: Not Authorized')
 }
