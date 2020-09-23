@@ -19,7 +19,7 @@ export class RentalDetailBookingComponent implements OnInit {
   // see original project for full list of options
   // can also be setup using the config service to apply to multiple pickers
   public options: any = {
-    locale: { format: 'YYYY-MM-DD' },
+    locale: { format: Booking.DATE_FORMAT },
     alwaysShowCalendars: false,
     isInvalidDate: this.checkForInvalidDates.bind(this)
   };
@@ -31,7 +31,7 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   private checkForInvalidDates(date) {
-    return this.bookedOutDates.includes(date.format('YYYY-MM-DD')) || date.diff(moment(), 'days') < 0;
+    return this.bookedOutDates.includes(date.format(Booking.DATE_FORMAT)) || date.diff(moment(), 'days') < 0;
   }
 
   private getBookedOutDates() {
