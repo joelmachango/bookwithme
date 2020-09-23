@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Booking } from '../../../booking/shared/booking.model'
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -8,11 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RentalDetailBookingComponent implements OnInit {
 
   @Input() price: Number;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() bookings: Booking[]
 
   public daterange: any = {};
 
@@ -22,6 +19,20 @@ export class RentalDetailBookingComponent implements OnInit {
     locale: { format: 'YYYY-MM-DD' },
     alwaysShowCalendars: false,
   };
+
+  constructor() { }
+
+  ngOnInit() {
+    this.getBookedOutDates()
+  }
+
+  private getBookedOutDates() {
+    if (this.bookings && this.bookings.length > 0) {
+      this.bookings.forEach((booking: Booking) => {
+        console.log(booking)
+      })
+    }
+  }
 
   public selectedDate(value: any, datepicker?: any) {
     // this is the date  selected
