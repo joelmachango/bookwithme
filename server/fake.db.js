@@ -40,7 +40,7 @@ class FakeDb {
 
     this.users = [{
       username: "Joel Machango",
-      email: "joel@tazamna.com",
+      email: "joel@tazamana.com",
       password: "test123"
     }, {
       username: "Shirleen Ogola",
