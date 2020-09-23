@@ -13,6 +13,8 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() price: Number;
   @Input() bookings: Booking[]
 
+  newBooking: Booking
+
   public daterange: any = {};
   bookedOutDates: any[] = []
 
@@ -27,17 +29,18 @@ export class RentalDetailBookingComponent implements OnInit {
   constructor(private helper: HelperService) { }
 
   ngOnInit() {
+    this.newBooking = new Booking
     this.getBookedOutDates()
   }
 
   private checkForInvalidDates(date) {
-    return this.bookedOutDates.includes(date.format(Booking.DATE_FORMAT)) || date.diff(moment(), 'days') < 0;
+    return this.bookedOutDates.includes(this.helper.formatBookingDate(date)) || date.diff(moment(), 'days') < 0;
   }
 
   private getBookedOutDates() {
     if (this.bookings && this.bookings.length > 0) {
       this.bookings.forEach((booking: Booking) => {
-        const dateRange = this.helper.getRangeOfDates(booking.startAt, booking.endAt)
+        const dateRange = this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt)
         // destructurizing dates array to elements
         this.bookedOutDates.push(...dateRange)
       })
@@ -45,12 +48,13 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   public selectedDate(value: any, datepicker?: any) {
-    // this is the date  selected
-    console.log(value);
 
-    // any object can be passed to the selected event and it will be passed back here
-    datepicker.start = value.start;
-    datepicker.end = value.end;
+    this.newBooking.startAt = this.helper.formatBookingDate(value.start)
+    this.newBooking.endAt = this.helper.formatBookingDate(value.end)
+    this.newBooking.days = -(value.start.diff(value.end, 'days'))
+
+    console.log(this.newBooking)
+
 
     // use passed valuable to update state
     this.daterange.start = value.start;
