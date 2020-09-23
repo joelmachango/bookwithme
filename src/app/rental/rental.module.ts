@@ -6,13 +6,15 @@ import { NgPipesModule } from 'ngx-pipes';
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 
+import { RentalService } from './shared/rental.service';
+import { HelperService } from '../common/service/helper.service';
+
+import { AuthGuard } from '../auth/shared/auth.guard';
 
 import { RentalComponent } from "./rental.component";
 import { RentalListComponent } from "./rental-list/rental-list.component";
 import { RentalListItemComponent } from "./rental-list-item/rental-list-item.component";
-import { RentalService } from './shared/rental.service';
 import { RentalDetailsComponent } from './rental-details/rental-details.component';
-import { AuthGuard } from '../auth/shared/auth.guard';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 
 const routes: Routes = [
@@ -43,7 +45,7 @@ const routes: Routes = [
     MapModule,
     Daterangepicker
   ],
-  providers: [RentalService, AuthGuard]
+  providers: [RentalService, AuthGuard, HelperService]
 })
 
 export class RentalModule { }

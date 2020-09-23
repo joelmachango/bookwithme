@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Booking } from '../../../booking/shared/booking.model'
+import { HelperService } from '../../../common/service/helper.service';
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -20,7 +21,7 @@ export class RentalDetailBookingComponent implements OnInit {
     alwaysShowCalendars: false,
   };
 
-  constructor() { }
+  constructor(private helper: HelperService) { }
 
   ngOnInit() {
     this.getBookedOutDates()
@@ -29,7 +30,7 @@ export class RentalDetailBookingComponent implements OnInit {
   private getBookedOutDates() {
     if (this.bookings && this.bookings.length > 0) {
       this.bookings.forEach((booking: Booking) => {
-        console.log(booking)
+        this.helper.getRangeOfDates(booking.startAt, booking.endAt)
       })
     }
   }
