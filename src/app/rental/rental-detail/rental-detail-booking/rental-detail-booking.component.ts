@@ -13,6 +13,7 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() bookings: Booking[]
 
   public daterange: any = {};
+  bookedOutDates: any[] = []
 
   // see original project for full list of options
   // can also be setup using the config service to apply to multiple pickers
@@ -30,7 +31,9 @@ export class RentalDetailBookingComponent implements OnInit {
   private getBookedOutDates() {
     if (this.bookings && this.bookings.length > 0) {
       this.bookings.forEach((booking: Booking) => {
-        this.helper.getRangeOfDates(booking.startAt, booking.endAt)
+        const dateRange = this.helper.getRangeOfDates(booking.startAt, booking.endAt)
+        // destructurizing dates array to elements
+        this.bookedOutDates.push(...dateRange)
       })
     }
   }
