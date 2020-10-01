@@ -13,7 +13,6 @@ import { Rental } from '../../shared/rental.model';
 export class RentalDetailBookingComponent implements OnInit {
 
   @Input() rental: Rental;
-  // @Input() bookings: Booking[]
 
   newBooking: Booking
 
