@@ -14,8 +14,8 @@ export class RentalDetailBookingComponent implements OnInit {
 
   @Input() rental: Rental;
 
+  bookings: any;
   newBooking: Booking
-
   public daterange: any = {};
   bookedOutDates: any[] = []
 
@@ -39,16 +39,16 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   private getBookedOutDates() {
-    const bookings: Booking = this.rental.bookings
-    console.log(bookings)
+    this.bookings = this.rental.bookings
+    const bookings = this.bookings
 
-    // if (bookings && bookings.length > 0) {
-    //   bookings.forEach((booking: Booking) => {
-    //     const dateRange = this.helper.getBookingRangeOfDates(booking.startAt, booking.endAt)
-    //     // destructurizing dates array to elements
-    //     this.bookedOutDates.push(...dateRange)
-    //   })
-    // }
+    if (bookings && bookings.length > 0) {
+      bookings.forEach((booking: Booking) => {
+        const dateRange = this.helper.getRangeOfDates(booking.startAt, booking.endAt, Booking.DATE_FORMAT)
+        // destructurizing dates array to elements
+        this.bookedOutDates.push(...dateRange)
+      })
+    }
   }
 
   reserveRental() {
