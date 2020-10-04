@@ -6,7 +6,7 @@ import { Booking } from '../../booking/shared/booking.model';
 export class HelperService {
 
   // too specific
-  private getRangeOfDates(startAt, endAt, dateFormat) {
+  public getRangeOfDates(startAt, endAt, dateFormat) {
     const tempDates = [];
     const mEndAt = moment(endAt)
     let mStartAt = moment(startAt)
@@ -30,7 +30,7 @@ export class HelperService {
     return this.formatDate(date, Booking.DATE_FORMAT)
   }
 
-  public getBookingRangeOfDates(startAt, endAt) {
-    this.getRangeOfDates(startAt, endAt, Booking.DATE_FORMAT)
-  }
+  // public getBookingRangeOfDates(startAt, endAt) {
+  //   this.getRangeOfDates(startAt, endAt, Booking.DATE_FORMAT)
+  // }
 }
