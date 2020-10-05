@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { HelperService } from '../../../common/service/helper.service';
 import * as moment from 'moment'
 
@@ -7,6 +7,9 @@ import { Rental } from '../../shared/rental.model';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from '../../../booking/shared/booking.service';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -35,7 +38,15 @@ export class RentalDetailBookingComponent implements OnInit {
   };
 
   constructor(
-    private helper: HelperService, private modalService: NgbModal, private bookingService: BookingService) { }
+    private helper: HelperService,
+    private modalService: NgbModal,
+    private bookingService: BookingService,
+    private vcr: ViewContainerRef,
+    private toastr: ToastsManager
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+
+  }
 
   ngOnInit() {
     this.newBooking = new Booking
@@ -77,6 +88,7 @@ export class RentalDetailBookingComponent implements OnInit {
         this.addNewBookedDates(bookingData)
         this.newBooking = new Booking()
         this.modalRef.close()
+        this.toastr.success('Booking successfully created, check your booking details in manage section', 'Success!');
         console.log(bookingData)
       },
       (errorResponse: any) => {
