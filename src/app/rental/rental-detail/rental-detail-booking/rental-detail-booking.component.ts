@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HelperService } from '../../../common/service/helper.service';
+import { ModalService } from '../../shared/modal.service'
 import * as moment from 'moment'
 
 import { Booking } from '../../../booking/shared/booking.model'
@@ -11,6 +12,7 @@ import { Rental } from '../../shared/rental.model';
   styleUrls: ['./rental-detail-booking.component.scss']
 })
 export class RentalDetailBookingComponent implements OnInit {
+  private bodyText: string;
 
   @Input() rental: Rental;
 
@@ -27,11 +29,14 @@ export class RentalDetailBookingComponent implements OnInit {
     isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper: HelperService) { }
+  constructor(private helper: HelperService, private modalService: ModalService) { }
 
   ngOnInit() {
     this.newBooking = new Booking
     this.getBookedOutDates()
+
+    this.bodyText = 'This text can be updated in modal 1';
+
   }
 
   private checkForInvalidDates(date) {
@@ -63,6 +68,12 @@ export class RentalDetailBookingComponent implements OnInit {
     this.newBooking.totalPrice = this.newBooking.days * this.rental.dailyRate
   }
 
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
 
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 
 }

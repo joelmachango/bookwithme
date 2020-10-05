@@ -11,6 +11,9 @@ import { AuthModule } from './auth/auth.module';
 
 import { AuthComponent } from './auth/auth.component';
 
+import * as $ from 'jquery';
+
+
 const routes: Routes = [
   { path: '', redirectTo: 'rentals', pathMatch: 'full' }
 ]

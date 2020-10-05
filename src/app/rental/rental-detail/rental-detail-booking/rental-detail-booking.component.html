@@ -9,6 +9,9 @@
     <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests">
   </div>
   <button (click)="reserveRental()" class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+
+  <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+
   <hr>
   <p class="booking-note-title">People are interested into this house</p>
   <p class="booking-note-text">
@@ -16,3 +19,15 @@
   </p>
 </div>
 
+<modal id="custom-modal-1">
+  <div class="modal">
+    <div class="modal-body">
+      <h1>A Custom Modal!</h1>
+      <p>
+        Home page text: <input type="text" [(ngModel)]="bodyText" />
+      </p>
+      <button (click)="closeModal('custom-modal-1');">Close</button>
+    </div>
+  </div>
+  <div class="modal-background"></div>
+</modal>
