@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HelperService } from '../../../common/service/helper.service';
 import * as moment from 'moment'
 
@@ -14,6 +14,7 @@ import { DaterangePickerComponent } from 'ng2-daterangepicker';
 
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-rental-detail-booking',
   templateUrl: './rental-detail-booking.component.html',
   styleUrls: ['./rental-detail-booking.component.scss']
