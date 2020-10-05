@@ -6,6 +6,7 @@ import { Booking } from '../../../booking/shared/booking.model'
 import { Rental } from '../../shared/rental.model';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { BookingService } from '../../../booking/shared/booking.service';
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -31,7 +32,7 @@ export class RentalDetailBookingComponent implements OnInit {
   };
 
   constructor(
-    private helper: HelperService, private modalService: NgbModal) { }
+    private helper: HelperService, private modalService: NgbModal, private bookingService: BookingService) { }
 
   ngOnInit() {
     this.newBooking = new Booking
@@ -61,7 +62,16 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   createBooking() {
-    console.log(this.newBooking)
+    this.newBooking.rental = this.rental
+
+    this.bookingService.createBooking(this.newBooking).subscribe(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
   }
 
   public selectedDate(value: any, datepicker?: any) {
