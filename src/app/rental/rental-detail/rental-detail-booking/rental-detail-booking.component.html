@@ -1,14 +1,22 @@
 <div class="booking">
   <h3 class="booking-price">${{rental.dailyRate}} <span class="booking-per-night">per night</span></h3>
   <hr>
-  <label>Dates</label>
-  <input type="text" class="form-control daterangepicker-input" name="daterangeInput" daterangepicker
-    [options]="options" (selected)="selectedDate($event, daterange)" />
-  <div class="form-group">
-    <label for="guests">Guests</label>
-    <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests">
-  </div>
-  <button (click)="openConfirmModal(content)" class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+
+  <form #bookingForm="ngForm">
+    <label>Dates</label>
+    <input type="text" class="form-control daterangepicker-input" name="daterangeInput" daterangepicker
+      [options]="options" (selected)="selectedDate($event, daterange)" />
+    <div class="form-group">
+      <label for="guests">Guests</label>
+      <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests"
+        required name="guests">
+    </div>
+  </form>
+
+
+  <button [disabled]="!bookingForm.form.valid || !newBooking.startAt || !newBooking.endAt"
+    (click)="openConfirmModal(content)" class="btn btn-danger btn-confirm btn-block">Reserve place
+    now</button>
 
   <!-- <button (click)="showModal(content)">Show Bootstrap Modal</button> -->
   <hr>
