@@ -11,7 +11,7 @@ import { AuthModule } from './auth/auth.module';
 
 import { AuthComponent } from './auth/auth.component';
 
-import * as $ from 'jquery';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -28,7 +28,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     RentalModule,
-    AuthModule
+    AuthModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

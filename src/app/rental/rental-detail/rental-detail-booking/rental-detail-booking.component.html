@@ -8,9 +8,9 @@
     <label for="guests">Guests</label>
     <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests">
   </div>
-  <button (click)="reserveRental()" (click)="openModal('custom-modal-1')"
-    class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+  <button (click)="reserveRental()" class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
 
+  <button (click)="showModal(content)">Show Bootstrap Modal</button>
   <hr>
   <p class="booking-note-title">People are interested into this house</p>
   <p class="booking-note-text">
@@ -18,15 +18,21 @@
   </p>
 </div>
 
-<modal id="custom-modal-1">
-  <div class="modal">
-    <div class="modal-body">
-      <h1>A Custom Modal!</h1>
-      <p>
-        Home page text: <input type="text" [(ngModel)]="bodyText" />
-      </p>
-      <button (click)="closeModal('custom-modal-1');">Close</button>
+<ng-template #content let-cl="close" let-di="dismiss">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Modal title</h5> <button type="button" class="close"
+        (click)="cl('Closed from Close button')">
+
+        <span aria-hidden="true">×</span>
+
+      </button>
     </div>
+    <div class="modal-body">
+      <p>Modal body text goes here.</p>
+    </div>
+    <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+        (click)="di('Dismissed from dismiss button')">Dismiss</button> <button type="button" class="btn btn-primary"
+        (click)="cl('Closed from Close button')">Close</button> </div>
   </div>
-  <div class="modal-background"></div>
-</modal>
+</ng-template>
