@@ -18,9 +18,12 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() rental: Rental;
 
   bookings: any;
-  newBooking: Booking
+  newBooking: Booking;
+  modalRef: any;
+
   public daterange: any = {};
   bookedOutDates: any[] = []
+  errors: any[] = []
 
   // see original project for full list of options
   // can also be setup using the config service to apply to multiple pickers
@@ -56,20 +59,27 @@ export class RentalDetailBookingComponent implements OnInit {
     }
   }
 
+  private addNewBookedDates(bookingData: any) {
+    const dateRange = this.helper.getRangeOfDates(bookingData.startAt, bookingData.endAt, Booking.DATE_FORMAT)
+    this.bookedOutDates.push(...dateRange)
+  }
+
   openConfirmModal(content) {
-    this.modalService.open(content)
-    // console.log(this.newBooking)
+    this.modalRef = this.modalService.open(content)
   }
 
   createBooking() {
     this.newBooking.rental = this.rental
 
     this.bookingService.createBooking(this.newBooking).subscribe(
-      (res) => {
-        console.log(res)
+      (bookingData: any) => {
+        this.addNewBookedDates(bookingData)
+        this.newBooking = new Booking()
+        this.modalRef.close()
+        console.log(bookingData)
       },
-      (err) => {
-        console.log(err)
+      (errorResponse: any) => {
+        this.errors = errorResponse.error.errors
       }
     )
   }

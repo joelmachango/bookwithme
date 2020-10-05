@@ -46,6 +46,11 @@
 
       <p>Do you confirm booking for selected days?</p>
     </div>
+    <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
+      <p *ngFor="let error of errors">
+        {{error.details}}
+      </p>
+    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger btn-confirm btn-block" (click)="createBooking()">Confirm</button>
       <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">Close</button>
