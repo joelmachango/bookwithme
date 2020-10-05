@@ -59,6 +59,10 @@ export class RentalDetailBookingComponent implements OnInit {
     // console.log(this.newBooking)
   }
 
+  createBooking() {
+    console.log(this.newBooking)
+  }
+
   public selectedDate(value: any, datepicker?: any) {
 
     this.newBooking.startAt = this.helper.formatBookingDate(value.start)

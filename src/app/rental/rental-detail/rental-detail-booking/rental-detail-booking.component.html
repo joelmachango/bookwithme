@@ -21,18 +21,26 @@
 <ng-template #content let-cl="close" let-di="dismiss">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Modal title</h5> <button type="button" class="close"
-        (click)="cl('Closed from Close button')">
+      <h5 class="modal-title">Confirm Booking
+        <p>{{newBooking.startAt}} to {{newBooking.endAt}}</p>
+      </h5>
+      <button type="button" class="close" (click)="cl('Closed from Close button')">
 
         <span aria-hidden="true">×</span>
 
       </button>
     </div>
     <div class="modal-body">
-      <p>Modal body text goes here.</p>
+      <em>{{newBooking.days}}</em> nights/
+      <em>{{rental.dailyRate}}</em> per Night
+      <p>Guests: <em>{{newBooking.guests}}</em></p>
+      <p>Price: <em>{{newBooking.totalPrice}}$</em></p>
+
+      <p>Do you confirm booking for selected days?</p>
     </div>
-    <div class="modal-footer"> <button type="button" class="btn btn-secondary"
-        (click)="di('Dismissed from dismiss button')">Dismiss</button> <button type="button" class="btn btn-primary"
-        (click)="cl('Closed from Close button')">Close</button> </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger btn-confirm btn-block" (click)="createBooking()">Confirm</button>
+      <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">Close</button>
+    </div>
   </div>
 </ng-template>
