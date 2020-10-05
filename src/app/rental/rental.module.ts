@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 
 import { RentalService } from './shared/rental.service';
 import { HelperService } from '../common/service/helper.service';
+import { ModalService } from './shared/modal.service';
+import { BookingService } from '../booking/shared/booking.service';
+
+
 
 import { AuthGuard } from '../auth/shared/auth.guard';
 
@@ -47,7 +51,7 @@ const routes: Routes = [
     Daterangepicker,
     FormsModule
   ],
-  providers: [RentalService, AuthGuard, HelperService]
+  providers: [RentalService, AuthGuard, HelperService, ModalService, BookingService]
 })
 
 export class RentalModule { }
