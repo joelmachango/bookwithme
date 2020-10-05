@@ -24,6 +24,7 @@ export class RentalDetailBookingComponent implements OnInit {
   // see original project for full list of options
   // can also be setup using the config service to apply to multiple pickers
   public options: any = {
+    opens: 'center',
     locale: { format: Booking.DATE_FORMAT },
     alwaysShowCalendars: false,
     isInvalidDate: this.checkForInvalidDates.bind(this)

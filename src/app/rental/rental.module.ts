@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { RentalService } from './shared/rental.service';
 import { HelperService } from '../common/service/helper.service';
 import { ModalService } from './shared/modal.service';
-import { ModalComponent } from './shared/modal.component';
 
 
 import { AuthGuard } from '../auth/shared/auth.guard';
@@ -40,8 +39,6 @@ const routes: Routes = [
     RentalComponent,
     RentalDetailsComponent,
     RentalDetailBookingComponent,
-    // Modal directive
-    ModalComponent
   ],
   imports: [
     RouterModule.forChild(routes),
