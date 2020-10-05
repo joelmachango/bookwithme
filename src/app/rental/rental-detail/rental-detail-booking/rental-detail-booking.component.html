@@ -8,9 +8,9 @@
     <label for="guests">Guests</label>
     <input type="number" class="form-control" id="guests" aria-describedby="emailHelp" [(ngModel)]="newBooking.guests">
   </div>
-  <button (click)="reserveRental()" class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+  <button (click)="openConfirmModal(content)" class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
 
-  <button (click)="showModal(content)">Show Bootstrap Modal</button>
+  <!-- <button (click)="showModal(content)">Show Bootstrap Modal</button> -->
   <hr>
   <p class="booking-note-title">People are interested into this house</p>
   <p class="booking-note-text">

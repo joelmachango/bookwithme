@@ -5,10 +5,7 @@ import * as moment from 'moment'
 import { Booking } from '../../../booking/shared/booking.model'
 import { Rental } from '../../shared/rental.model';
 
-import {
-  NgbModal,
-  ModalDismissReasons
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rental-detail-booking',
@@ -57,8 +54,9 @@ export class RentalDetailBookingComponent implements OnInit {
     }
   }
 
-  reserveRental() {
-    console.log(this.newBooking)
+  openConfirmModal(content) {
+    this.modalService.open(content)
+    // console.log(this.newBooking)
   }
 
   public selectedDate(value: any, datepicker?: any) {
