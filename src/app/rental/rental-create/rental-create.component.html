@@ -22,8 +22,7 @@
             <label for="city">Category</label>
 
             <select class="form-control" id="city" [(ngModel)]="newRental.category" name="category">
-              <option> house </option>
-              <option> condo </option>
+              <option *ngFor="let category of rentalCategories"> {{category}} </option>
             </select>
           </div>
 

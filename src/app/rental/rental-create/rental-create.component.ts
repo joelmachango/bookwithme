@@ -9,6 +9,7 @@ import { Rental } from '../shared/rental.model'
 export class RentalCreateComponent implements OnInit {
 
   newRental: Rental
+  rentalCategories = Rental.CATEGORIES
 
   constructor() { }
 
