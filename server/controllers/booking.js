@@ -32,9 +32,7 @@ exports.createBooking = function (req, res) {
 
         booking.save(function (err) {
           if (err) {
-            return res.status(422).send({
-              errors: normalizeErrors(error.errors)
-            })
+            return res.status(422).send({ errors: normalizeErrors(error.errors) })
           }
           foundRental.save()
 
