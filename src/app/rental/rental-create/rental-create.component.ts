@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Rental } from '../shared/rental.model'
 import { RentalService } from '../shared/rental.service';
@@ -11,6 +12,7 @@ export class RentalCreateComponent implements OnInit {
 
   newRental: Rental
   rentalCategories = Rental.CATEGORIES
+  errors: any[] = []
 
   constructor(private rentalService: RentalService) { }
 
@@ -29,8 +31,9 @@ export class RentalCreateComponent implements OnInit {
       (createdRental) => {
         console.log(createdRental)
       },
-      () => {
-
+      (errorResponse: HttpErrorResponse) => {
+        console.log(errorResponse.error)
+        // this.errors = errorResponse.error.errors
       }
     )
   }
