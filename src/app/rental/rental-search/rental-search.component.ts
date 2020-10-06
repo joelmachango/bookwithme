@@ -26,6 +26,9 @@ export class RentalSearchComponent implements OnInit {
   }
 
   getRentals() {
+    this.rentals = []
+    this.errors = []
+
     this.rentalService.getRentalsByCity(this.city).subscribe(
       (rentals: Rental[]) => {
         this.rentals = rentals
