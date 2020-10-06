@@ -22,6 +22,7 @@ import { RentalListItemComponent } from "./rental-list-item/rental-list-item.com
 import { RentalDetailsComponent } from './rental-details/rental-details.component';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 import { RentalSearchComponent } from './rental-search/rental-search.component';
+import { RentalCreateComponent } from './rental-create/rental-create.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     component: RentalComponent,
     children: [
       { path: "", component: RentalListComponent },
+      { path: "new", component: RentalCreateComponent },
       { path: ':rentalId', component: RentalDetailsComponent, canActivate: [AuthGuard] },
       { path: ':city/homes', component: RentalSearchComponent }
     ]
@@ -44,6 +46,7 @@ const routes: Routes = [
     RentalDetailsComponent,
     RentalDetailBookingComponent,
     RentalSearchComponent,
+    RentalCreateComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
