@@ -1,12 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="/">BWM</a>
-  <form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="searchForm" class="sr-only ">Search</label>
-      <input type="search" class="form-control bwm-search" id="searchForm" placeholder="Search">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2 btn-bwm-search">Search</button>
-  </form>
+  <div class="form-inline">
+    <input #citySearch type="search" class="form-control bwm-search mx-sm-3 mb-2" id="searchForm" placeholder="Search">
+    <button (click)="search(citySearch.value)" class="btn btn-primary mb-2 btn-bwm-search" type="button">Search</button>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

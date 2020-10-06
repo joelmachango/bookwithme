@@ -18,4 +18,8 @@ export class HeaderComponent implements OnInit {
     this.auth.logout()
     this.router.navigate(['/auth/login'])
   }
+
+  search(city: string) {
+    this.router.navigate([`/rentals/${city}/homes`])
+  }
 }
