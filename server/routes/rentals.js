@@ -35,7 +35,7 @@ router.post('', UserCtrl.authMiddleware, function (req, res) {
   Rental.create(rental, function (err, newRental) {
     if (err) {
       console.log(err)
-      return res.status(422).send({ errors: err.title })
+      return res.status(422).send({ errors: 'There was an error' })
       // return res.status(422).send({ errors: normalizeErrors(error.errors) })
     }
     User.update({ _id: user.id }, { $push: { rentals: newRental } }, function () { })
