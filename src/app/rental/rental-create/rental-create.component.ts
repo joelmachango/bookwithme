@@ -32,8 +32,8 @@ export class RentalCreateComponent implements OnInit {
         console.log(createdRental)
       },
       (errorResponse: HttpErrorResponse) => {
-        console.log(errorResponse.error)
-        // this.errors = errorResponse.error.errors
+        console.log(errorResponse)
+        this.errors = errorResponse.error.errors
       }
     )
   }

@@ -3,25 +3,25 @@
     <div class="row">
       <div class="col-md-5">
         <h1 class="page-title">Create Rental</h1>
-        <form #rental="ngForm">
+        <form #rentalForm="ngForm">
           <div class="form-group">
             <label for="title">Title</label>
-            <input [(ngModel)]="newRental.title" name="title" type="text" class="form-control" id="title">
+            <input [(ngModel)]="newRental.title" name="title" type="text" class="form-control" id="title" required>
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input [(ngModel)]="newRental.city" name="city" type="text" class="form-control" id="city">
+            <input [(ngModel)]="newRental.city" name="city" type="text" class="form-control" id="city" required>
           </div>
 
           <div class="form-group">
             <label for="street">Street</label>
-            <input [(ngModel)]="newRental.street" name="street" type="text" class="form-control" id="street">
+            <input [(ngModel)]="newRental.street" name="street" type="text" class="form-control" id="street" required>
           </div>
 
           <div class="form-group">
             <label for="city">Category</label>
 
-            <select class="form-control" id="city" [(ngModel)]="newRental.category" name="category">
+            <select class="form-control" id="city" [(ngModel)]="newRental.category" name="category" required>
               <option *ngFor="let category of rentalCategories"> {{category}} </option>
             </select>
           </div>
@@ -29,18 +29,19 @@
           <div class=" form-group">
             <label for="image">Image</label>
             <input type="file" name="image" class="form-control" id="image" placeholder="Upload file..."
-              (change)="handleImageChange()">
+              (change)="handleImageChange()" required>
           </div>
 
           <div class="form-group">
             <label for="bedrooms">Bedrooms</label>
-            <input [(ngModel)]="newRental.bedrooms" name="bedrooms" type="number" class="form-control" id="bedrooms">
+            <input [(ngModel)]="newRental.bedrooms" name="bedrooms" type="number" class="form-control" id="bedrooms"
+              required>
           </div>
 
           <div class="form-group">
             <label for="description">Description</label>
             <textarea [(ngModel)]="newRental.description" name="description" rows="5" type="text" class="form-control"
-              id="description">
+              id="description" required>
             </textarea>
           </div>
 
@@ -51,7 +52,7 @@
                 <div class="input-group-text">$</div>
               </div>
               <input [(ngModel)]="newRental.dailyRate" name="Daily rate" type="number" name="dailyRate"
-                class="form-control" id="dailyRate">
+                class="form-control" id="dailyRate" required>
             </div>
           </div>
 
@@ -59,13 +60,14 @@
             <label for="shared">Shared</label>
             <input type="checkbox" class="form-control" id="shared" [(ngModel)]="newRental.shared" name="shared">
           </div>
-          <button (click)="creteRental()" type="button" class="btn btn-bwm">Submit</button>
+          <button [disabled]="!rentalForm.form.valid" (click)="creteRental()" type="button"
+            class="btn btn-bwm">Submit</button>
         </form>
-        <!-- <div *ngIf="errors.length > 0" class="alert alert-danger">
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
           <p *ngFor="let error of errors">
             {{error.details}}{{error.detail}}
           </p>
-        </div> -->
+        </div>
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
