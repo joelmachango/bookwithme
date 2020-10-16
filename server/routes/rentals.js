@@ -26,6 +26,19 @@ router.get('/:id', function (req, res) {
     })
 });
 
+router.get('/manage', UserCtrl.authMiddleware, function (req, res) {
+  const user = res.locals.user
+
+  Rental.where({ user: user })
+    .populate('booking')
+    .exec(function (err, foundRentals) {
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) })
+      }
+      return res.json(foundRentals)
+    })
+})
+
 router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
   const user = res.locals.user
   Rental.findById(req.params.id)
