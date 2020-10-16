@@ -10,6 +10,7 @@ import { BookingService } from '../../../booking/shared/booking.service';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DaterangePickerComponent } from 'ng2-daterangepicker';
+import { AuthService } from '../../../auth/shared/auth.service';
 
 
 
@@ -49,7 +50,8 @@ export class RentalDetailBookingComponent implements OnInit {
     private modalService: NgbModal,
     private bookingService: BookingService,
     private vcr: ViewContainerRef,
-    private toastr: ToastsManager
+    private toastr: ToastsManager,
+    public auth: AuthService
   ) {
     this.toastr.setRootViewContainerRef(vcr);
 
