@@ -5,7 +5,8 @@ const User = require('../models/user')
 
 const UserCtrl = require('../controllers/user');
 const { json } = require('body-parser');
-const { normalizeErrors } = require('../helpers/mongoose')
+const { normalizeErrors } = require('../helpers/mongoose');
+const rental = require('../models/rental');
 
 
 router.get('/secret', UserCtrl.authMiddleware, function (req, res) {
@@ -24,6 +25,34 @@ router.get('/:id', function (req, res) {
       return res.json(foundRental)
     })
 });
+
+router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
+  const user = res.locals.user
+  Rental.findById(req.params.id)
+    .populate('user', '_id')
+    .populate({
+      path: 'bookings',
+      select: 'startAt',
+      match: { startAt: { $gt: new Date() } }
+    })
+    .exec(function (err, foundRental) {
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) })
+      }
+      if (user.id !== foundRental.user.id) {
+        return res.status(422).send({ errors: [{ title: 'Invalid user!', details: 'Your not rental owner' }] })
+      }
+      if (foundRental.length > 0) {
+        return res.status(422).send({ errors: [{ title: 'Active bookings available!', details: 'Cannot delete rental with active bookings' }] })
+      }
+      foundRental.remove(function (err) {
+        if (err) {
+          return res.status(422).send({ errors: normalizeErrors(err.errors) })
+        }
+        return res.json({ 'status': 'deleted' })
+      })
+    })
+})
 
 router.post('', UserCtrl.authMiddleware, function (req, res) {
   const { title, city, street, category, image, shared, bedrooms, description, dailyRate } = req.body;
@@ -50,9 +79,7 @@ router.get('', function (req, res) {
       .select('-bookings')
       .exec(function (err, filteredRentals) {
         if (err) {
-          return res.status(422).send({
-            errors: normalizeErrors(error.errors)
-          })
+          return res.status(422).send({ errors: normalizeErrors(err.errors) })
         }
         if (filteredRentals.length === 0) {
           return res.status(422).send({ errors: [{ title: 'No Rentals Found!', details: `There are no rentals for city ${city}` }] })
