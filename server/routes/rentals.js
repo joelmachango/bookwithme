@@ -13,6 +13,20 @@ router.get('/secret', UserCtrl.authMiddleware, function (req, res) {
   res.json({ "secret": true })
 })
 
+router.get('/manage', UserCtrl.authMiddleware, function (req, res) {
+  const user = res.locals.user
+
+  Rental.where({ user: user })
+    .populate('bookings')
+    .exec(function (err, foundRentals) {
+      if (err) {
+        return res.status(422).send({ errors: normalizeErrors(err.errors) })
+      }
+      return res.json(foundRentals)
+    })
+})
+
+
 router.get('/:id', function (req, res) {
   const rentalId = req.params.id;
   Rental.findById(rentalId)
@@ -25,19 +39,6 @@ router.get('/:id', function (req, res) {
       return res.json(foundRental)
     })
 });
-
-router.get('/manage', UserCtrl.authMiddleware, function (req, res) {
-  const user = res.locals.user
-
-  Rental.where({ user: user })
-    .populate('booking')
-    .exec(function (err, foundRentals) {
-      if (err) {
-        return res.status(422).send({ errors: normalizeErrors(err.errors) })
-      }
-      return res.json(foundRentals)
-    })
-})
 
 router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
   const user = res.locals.user
