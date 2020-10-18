@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AuthComponent } from './auth/auth.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ManageModule } from './manage/manage.module';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
     AuthModule,
     NgbModule.forRoot(),
     ToastModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ManageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
