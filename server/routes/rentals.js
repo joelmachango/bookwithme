@@ -8,11 +8,7 @@ const { json } = require('body-parser');
 const { normalizeErrors } = require('../helpers/mongoose');
 const rental = require('../models/rental');
 
-
-router.get('/secret', UserCtrl.authMiddleware, function (req, res) {
-  res.json({ "secret": true })
-})
-
+// Manage rental
 router.get('/manage', UserCtrl.authMiddleware, function (req, res) {
   const user = res.locals.user
 
@@ -40,6 +36,7 @@ router.get('/:id', function (req, res) {
     })
 });
 
+// Delete rental
 router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
   const user = res.locals.user
   Rental.findById(req.params.id)
@@ -68,6 +65,7 @@ router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
     })
 })
 
+// Create rental
 router.post('', UserCtrl.authMiddleware, function (req, res) {
   const { title, city, street, category, image, shared, bedrooms, description, dailyRate } = req.body;
   const user = res.locals.user
@@ -84,6 +82,7 @@ router.post('', UserCtrl.authMiddleware, function (req, res) {
   })
 })
 
+// Filter by city
 router.get('', function (req, res) {
   const city = req.query.city;
 
