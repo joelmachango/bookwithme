@@ -17,6 +17,10 @@ export class RentalService {
     return this.http.get('/api/v1/rentals')
   }
 
+  public getUserRentals(): Observable<any> {
+    return this.http.get('/api/v1/rentals/manage')
+  }
+
   public getRentalsByCity(city: string): Observable<any> {
     return this.http.get(`/api/v1/rentals?city=${city}`)
   }
