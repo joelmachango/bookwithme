@@ -1,6 +1,6 @@
 ### _Landing page_
 
-![Landing Page](assets/images/screenshots/landing-header.png)
+![Landing Page](src/assets/images/screenshots/landing-header.png)
 
 # Book with me Application
 
