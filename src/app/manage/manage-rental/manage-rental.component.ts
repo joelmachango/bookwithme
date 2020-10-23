@@ -13,8 +13,6 @@ export class ManageRentalComponent implements OnInit {
 
   constructor(private userService: RentalService) { }
 
-
-
   ngOnInit() {
     this.getUserRentals()
   }
@@ -23,8 +21,6 @@ export class ManageRentalComponent implements OnInit {
   this.userService.getUserRentals().subscribe(
     (userRentals) => {
       this.rentals = userRentals
-      console.log("Rentals")
-      console.log(userRentals)
     },
     () => {
       

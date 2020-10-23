@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Booking } from '../../../booking/shared/booking.model';
 
 @Component({
@@ -8,14 +9,20 @@ import { Booking } from '../../../booking/shared/booking.model';
 })
 export class ManageRentalBookingComponent implements OnInit {
 
+    errors: any[] = []
+modalRef: any
+
   @Input() bookings: Booking[];
 
-  constructor() {
-
+  constructor(private modalService: NgbModal) {
   }
 
   ngOnInit() {
-    console.log(this.bookings)
+  }
+
+   openConfirmModal(content) {
+    this.errors = []
+    this.modalRef = this.modalService.open(content)
   }
 
 }
