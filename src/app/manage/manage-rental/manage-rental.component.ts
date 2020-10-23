@@ -10,8 +10,9 @@ import { RentalService } from '../../rental/shared/rental.service';
 export class ManageRentalComponent implements OnInit {
 
   rentals: Rental[]
+  rentalDeleteIndex: number
 
-  constructor(private userService: RentalService) { }
+  constructor(private userService: RentalService, private rentalService: RentalService) { }
 
   ngOnInit() {
     this.getUserRentals()
@@ -22,10 +23,24 @@ export class ManageRentalComponent implements OnInit {
     (userRentals) => {
       this.rentals = userRentals
     },
-    () => {
-      
+    (err) => {
+      console.log(err)
     }
   )
   }
+
+  deleteRental(rentalId: string) {
+    console.log(rentalId)
+    this.rentalService.deleteRental(rentalId).subscribe(
+      (res) => {
+        this.rentals.splice(this.rentalDeleteIndex, 1);
+        this.rentalDeleteIndex = undefined
+       console.log(res)
+      },
+      (err) => {
+       console.log(err)   
+      }
+    )
+   }
 
 }

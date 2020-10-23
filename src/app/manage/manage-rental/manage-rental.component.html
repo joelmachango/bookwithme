@@ -2,7 +2,7 @@
   <h1 class="page-title">My Rentals</h1>
   <div class="row">
     <ng-container *ngIf="rentals && rentals.length > 0">
-      <div class="col-md-4" *ngFor="let rental of rentals">
+      <div class="col-md-4" *ngFor="let rental of rentals; let i = index">
         <div class="card text-center">
           <div class="card-block">
             <h4 class="card-title">{{rental.title}} - {{rental.city | titlecase}}</h4>
@@ -15,7 +15,15 @@
           </div>
           <div class="card-footer text-muted">
             <p>{{rental.createdAt | date: 'dd/MM/yyyy'}}</p>
-            <button type="button" class="btn btn-danger btn-delete">Delete</button>
+            <button *ngIf="rentalDeleteIndex != i" type="button" class="btn btn-danger btn-delete"
+              (click)="rentalDeleteIndex = i">Delete
+            </button>
+            <div *ngIf="rentalDeleteIndex === i">
+              <p>Do you confirm delete?</p>
+              <button class="btn btn-success" (click)="rentalDeleteIndex === i"
+                (click)="deleteRental(rental._id)">Yes</button>
+              <button class="btn btn-danger" (click)="rentalDeleteIndex = undefined">No</button>
+            </div>
           </div>
         </div>
       </div>
