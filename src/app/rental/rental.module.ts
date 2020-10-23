@@ -20,9 +20,9 @@ import { RentalComponent } from "./rental.component";
 import { RentalListComponent } from "./rental-list/rental-list.component";
 import { RentalListItemComponent } from "./rental-list-item/rental-list-item.component";
 import { RentalDetailsComponent } from './rental-details/rental-details.component';
-import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 import { RentalSearchComponent } from './rental-search/rental-search.component';
 import { RentalCreateComponent } from './rental-create/rental-create.component';
+import { RentalDetailsBookingComponent } from './rental-details/rental-details-booking/rental-details-booking.component';
 
 const routes: Routes = [
   {
@@ -44,9 +44,9 @@ const routes: Routes = [
     RentalListItemComponent,
     RentalComponent,
     RentalDetailsComponent,
-    RentalDetailBookingComponent,
     RentalSearchComponent,
     RentalCreateComponent,
+    RentalDetailsBookingComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

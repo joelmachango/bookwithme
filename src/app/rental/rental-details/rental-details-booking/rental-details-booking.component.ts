@@ -13,14 +13,13 @@ import { DaterangePickerComponent } from 'ng2-daterangepicker';
 import { AuthService } from '../../../auth/shared/auth.service';
 
 
-
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'app-rental-detail-booking',
-  templateUrl: './rental-detail-booking.component.html',
-  styleUrls: ['./rental-detail-booking.component.scss']
+  selector: 'app-rental-details-booking',
+  templateUrl: './rental-details-booking.component.html',
+  styleUrls: ['./rental-details-booking.component.scss']
 })
-export class RentalDetailBookingComponent implements OnInit {
+export class RentalDetailsBookingComponent implements OnInit {
 
   @Input() rental: Rental;
 
@@ -139,4 +138,3 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
 }
-
