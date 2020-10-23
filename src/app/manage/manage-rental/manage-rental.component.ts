@@ -9,7 +9,7 @@ import { RentalService } from '../../rental/shared/rental.service';
 })
 export class ManageRentalComponent implements OnInit {
 
-  rentals: Rental[] = []
+  rentals: Rental[]
 
   constructor(private userService: RentalService) { }
 
