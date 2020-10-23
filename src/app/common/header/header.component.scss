@@ -6,8 +6,9 @@
 
 
   .bwm-search {
-    height: 50px;
+    height: 40px;
     width: 300px;
+    margin-right: 20px;
   }
 
 
@@ -17,6 +18,13 @@
     letter-spacing: 1px;
     color: $main-color;
     font-weight: 500;
+
+    img {
+          height: 60px;
+          border-radius: 50%;
+          display: block;
+          margin: auto;
+        }
   }
 
 
@@ -30,11 +38,11 @@
     // color: #F44336;
 
 
-    &:hover, &:focus, &:active {
-      background-color: transparent;
-      border-color: $main-color !important;
-      color: $main-color !important;
-      box-shadow: none;
-    }
+    // &:hover, &:focus, &:active {
+    //   background-color: transparent;
+    //   border-color: $main-color !important;
+    //   color: $main-color !important;
+    //   box-shadow: none;
+    // }
   }
 }

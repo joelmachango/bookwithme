@@ -1,3 +1,35 @@
-<p *ngFor="let rental of rentals">
-  {{rental.title}}
-</p>
+<section id="userRentals">
+  <h1 class="page-title">My Rentals</h1>
+  <div class="row">
+    <ng-container>
+      <!-- Check for rentals length -->
+      <div class="col-md-4">
+        <!-- Iterate Rentals -->
+        <div class="card text-center">
+          <div class="card-block">
+            <h4 class="card-title">Nice Apartment - San Francisco</h4> <!-- Rental Title - Rental City -->
+            <button class="btn btn-outline-danger" routerLink="/rentals/{{rental._id}}">
+              Go to Rental
+            </button>
+            <span>
+              <!-- Check for rental bookings length -->
+              <button class="btn btn-primary">Show Bookings</button>
+            </span>
+          </div>
+          <div class="card-footer text-muted">
+            <p>Created at 2018/04/04</p> <!-- Created At -->
+            <button type="button" class="btn btn-bwm btn-delete">Delete</button> <!-- Delete Rental Button -->
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-8">
+      <!-- Check if rentals length === 0 -->
+      <div class="alert alert-warning">
+        You dont have any rentals currenty created. If you want advertised your property
+        please follow this link.
+        <a class="btn btn-bwm" routerLink="#">Register Rental</a> <!-- Link to rentals/new -->
+      </div>
+    </div>
+  </div>
+</section>
