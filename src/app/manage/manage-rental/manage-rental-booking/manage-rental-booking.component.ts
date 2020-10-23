@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Booking } from '../../../booking/shared/booking.model';
 
 @Component({
   selector: 'app-manage-rental-booking',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageRentalBookingComponent implements OnInit {
 
-  constructor() { }
+  @Input() bookings: Booking[];
+
+  constructor() {
+
+  }
 
   ngOnInit() {
+    console.log(this.bookings)
   }
 
 }

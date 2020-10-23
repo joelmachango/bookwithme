@@ -10,7 +10,7 @@
               Go to Rental
             </button>
             <span *ngIf="rental.bookings.length > 0">
-              <app-manage-rental-booking></app-manage-rental-booking>
+              <app-manage-rental-booking [bookings]="rental.bookings"></app-manage-rental-booking>
             </span>
           </div>
           <div class="card-footer text-muted">
