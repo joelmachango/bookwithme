@@ -1,3 +1,31 @@
-<p>
-  manage-rental works!
-</p>
+<section id="userRentals">
+  <h1 class="page-title">My Rentals</h1>
+  <div class="row">
+    <ng-container *ngIf="rentals && rentals.length > 0">
+      <div class="col-md-4" *ngFor="let rental of rentals">
+        <div class="card text-center">
+          <div class="card-block">
+            <h4 class="card-title">{{rental.title}} - {{rental.city | titlecase}}</h4>
+            <button class="btn btn-outline-danger" routerLink="/rentals/{{rental._id}}">
+              Go to Rental
+            </button>
+            <span *ngIf="rental.bookings.length > 0">
+              <app-manage-rental-booking></app-manage-rental-booking>
+            </span>
+          </div>
+          <div class="card-footer text-muted">
+            <p>{{rental.createdAt | date: 'dd/MM/yyyy'}}</p>
+            <button type="button" class="btn btn-danger btn-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-8" *ngIf="rentals && rentals.length === 0">
+      <div class="alert alert-warning">
+        You dont have any rentals currenty created. If you want advertised your property
+        please follow this link.
+        <button class="btn btn-danger" [routerLink]="['/rentals/new']">Register Rental</button>
+      </div>
+    </div>
+  </div>
+</section>
