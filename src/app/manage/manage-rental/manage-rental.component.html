@@ -9,8 +9,8 @@
             <button class="btn btn-outline-danger" routerLink="/rentals/{{rental._id}}">
               Go to Rental
             </button>
-            <span>
-              <button class="btn btn-primary">Show Bookings</button>
+            <span *ngIf="rental.bookings.length > 0">
+              <app-manage-rental-booking></app-manage-rental-booking>
             </span>
           </div>
           <div class="card-footer text-muted">
