@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Rental } from '../../rental/shared/rental.model';
 import { RentalService } from '../../rental/shared/rental.service';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-rental',
@@ -12,7 +15,13 @@ export class ManageRentalComponent implements OnInit {
   rentals: Rental[]
   rentalDeleteIndex: number
 
-  constructor(private userService: RentalService, private rentalService: RentalService) { }
+  constructor(
+    private userService: RentalService, 
+    private rentalService: RentalService,    
+    private vcr: ViewContainerRef, 
+    private toastr: ToastsManager) {
+      this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     this.getUserRentals()
@@ -37,8 +46,9 @@ export class ManageRentalComponent implements OnInit {
         this.rentalDeleteIndex = undefined
        console.log(res)
       },
-      (err) => {
-       console.log(err)   
+      (errorResponse: HttpErrorResponse) => {
+       console.log(errorResponse)   
+       this.toastr.error('Error message', 'Error!');
       }
     )
    }
