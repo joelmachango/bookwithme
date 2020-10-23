@@ -81,17 +81,12 @@
   "users": [
     {
       "username": "Joel Machango",
-      "email": "devl@joelmachango.com",
-      "password": "test123"
-    },
-     {
-      "username": "Joel Murugami",
-      "email": "joel@tazamana.com",
+      "email": "dev@joelmachango.com",
       "password": "test123"
     },
     {
       "username": "Shirleen Ogola",
-      "email": "ogola@tazamna.com",
+      "email": "ogola@tazamana.com",
       "password": "test1234"
     }
   ]
