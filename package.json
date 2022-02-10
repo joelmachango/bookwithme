@@ -35,7 +35,7 @@
     "ng2-daterangepicker": "^2.0.12",
     "ng2-toastr": "^4.1.2",
     "ngx-pipes": "^2.7.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
