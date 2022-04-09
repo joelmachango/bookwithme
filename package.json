@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.23",
     "ng2-daterangepicker": "^2.0.12",
     "ng2-toastr": "^4.1.2",
